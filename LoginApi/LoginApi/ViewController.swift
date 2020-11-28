@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var dangnhapbtN: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dangnhapText.attributedPlaceholder = NSAttributedString(string: "Tài Khoản Của Bạn" , attributes: NSAttributedString.key.for)
+        
     }
 
     @IBAction func btnLogin(_ sender: Any) {
@@ -29,8 +30,13 @@ class ViewController: UIViewController {
     func login(_ phone: String, _ password: String){
         let url = "http://report.bekhoe.vn/api/accounts/login"
         let header : HTTPHeaders = ["Content-Type":"application/x-www-form-urlencoded"]
+        //MARK: -- nhập vào ô textfield
         let par = ["PhoneNumber": phone ,
                    "Password": password]
+        //MARK: -- gán cứng textfield sẵn
+//        let par = ["PhoneNumber": "0942961413" ,
+//                   "Password": "123"]
+        
         AF.request(url, method: .post, parameters: par, encoding: URLEncoding.httpBody , headers: header).responseJSON { (response) in
                        print(response)
                     switch response.result {
@@ -41,9 +47,11 @@ class ViewController: UIViewController {
                             let data = User(json: json["data"])
                             if let token = data?.token {
                                 UserDefaults.standard.setValue(token, forKey: "token")
-                                print(token)
                             }
                             let profileVC = Profile()
+//                            MARK:-- Truyền data sáng Profile
+                            profileVC.userName = data?.name
+                            profileVC.token = (data?.token)!
                             let navigationController = UINavigationController.init(rootViewController: profileVC)
                             navigationController.modalPresentationStyle = .fullScreen
                             self.present(navigationController, animated: true, completion: nil)

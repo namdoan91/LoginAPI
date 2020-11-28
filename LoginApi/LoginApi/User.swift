@@ -8,16 +8,16 @@
 import Foundation
 import SwiftyJSON
 class User{
-    var id: Int
-    var createAT:String
-    var createdBy: String
-    var name: String
-    var adress: String
-    var gender: String
-    var phoneNumber: String
-    var email:String
-    var avatar: String
-    var token: String
+    var id: Int?
+    var createAT:String?
+    var createdBy: String?
+    var name: String?
+    var adress: String?
+    var gender: String?
+    var phoneNumber: String?
+    var email:String?
+    var avatar: String?
+    var token: String?
     
     required public init?(json : JSON){
         id = json["id"].intValue

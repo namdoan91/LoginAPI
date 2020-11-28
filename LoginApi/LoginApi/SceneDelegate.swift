@@ -24,10 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(identifier: "ViewController") as! ViewController
         let profileVC = Profile()
-        
         let navigationController = UINavigationController(rootViewController: profileVC)
-        let token = UserDefaults.standard.string(forKey: "token")
-        if token?.count ?? 0 > 0{
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        if !token.isEmpty{
             window?.rootViewController = navigationController
         }else{
             window?.rootViewController = loginVC
