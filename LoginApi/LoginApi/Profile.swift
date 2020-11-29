@@ -10,13 +10,10 @@ import Alamofire
 import SwiftyJSON
 
 class Profile: UIViewController {
-    @IBOutlet weak var showProfile: UITextView!
-    
 //    MARK: -- Tạo biến nhận data đó
-    var userName : String!
-    var token: String = ""
+    var userName = ""
+    let token = UserDefaults.standard.string(forKey: "token")
     var isFirst: Bool = true
-    
     deinit {
         print("Huỷ ProfileViewController")
     }
@@ -24,16 +21,15 @@ class Profile: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.lightGray
-        navigationItem.title = userName
         let editButton = UIBarButtonItem(title: "EDIT", style: .done, target: self, action: #selector(edit))
         navigationItem.rightBarButtonItem = editButton
         let signOutButton = UIBarButtonItem(image: UIImage.init(systemName: "location"), style: .done, target: self, action: #selector(signOut))
         navigationItem.leftBarButtonItem = signOutButton
         getProfile()
-
+        
+        print("viewdidload")
 
     }
-     
     @objc func edit(){
        
     print("go edit")
@@ -55,23 +51,17 @@ class Profile: UIViewController {
     print("log out")
     
     }
-    func addView(){
-        
-    }
-    func subLayout(){
-        
-    }
-    
     func getProfile(){
-//        print("Token profile: \(token)")
         let url = "http://report.bekhoe.vn/api/accounts/profile"
-        let header: HTTPHeaders = [.authorization(bearerToken: token)]
-        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON {
+        let header: HTTPHeaders = [.authorization(bearerToken: token!)]
+        AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: header).responseJSON { [self]
             response in
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                print(json)
+                let data = User(json: json["data"])
+                self.userName = (data?.name)!
+                navigationItem.title = userName
             case .failure(let err):
                 print(err.localizedDescription)
             }

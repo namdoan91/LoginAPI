@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		081EF76A25739AA2005D1E80 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081EF76925739AA2005D1E80 /* Register.swift */; };
 		08A16AC3257129FE00739775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A16AC2257129FE00739775 /* AppDelegate.swift */; };
 		08A16AC5257129FE00739775 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A16AC4257129FE00739775 /* SceneDelegate.swift */; };
 		08A16AC7257129FE00739775 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A16AC6257129FE00739775 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		081EF76925739AA2005D1E80 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		08A16ABF257129FE00739775 /* LoginApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A16AC2257129FE00739775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08A16AC4257129FE00739775 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				08A16AC2257129FE00739775 /* AppDelegate.swift */,
 				08A16AC4257129FE00739775 /* SceneDelegate.swift */,
 				08A16AC6257129FE00739775 /* ViewController.swift */,
+				081EF76925739AA2005D1E80 /* Register.swift */,
 				08A16AE82571397E00739775 /* Profile.swift */,
 				08A16ADB25712FA400739775 /* User.swift */,
 				08A16AC8257129FE00739775 /* Main.storyboard */,
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				081EF76A25739AA2005D1E80 /* Register.swift in Sources */,
 				08A16AC7257129FE00739775 /* ViewController.swift in Sources */,
 				08A16AE92571397E00739775 /* Profile.swift in Sources */,
 				08A16ADC25712FA400739775 /* User.swift in Sources */,

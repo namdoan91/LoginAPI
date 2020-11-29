@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginVC = storyboard.instantiateViewController(identifier: "ViewController") as! ViewController
         let profileVC = Profile()
@@ -33,6 +32,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         window?.makeKeyAndVisible()
     }
+    
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
