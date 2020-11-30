@@ -1,20 +1,24 @@
 PODS:
   - Alamofire (5.2.2)
+  - SkyFloatingLabelTextField (3.8.0)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
+  - SkyFloatingLabelTextField
   - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - SkyFloatingLabelTextField
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: e61aaebd372574fe382ebb6dceb8f4e2cba631a6
+PODFILE CHECKSUM: e2ccc01baee65d51d72bb45c4897fe00b50fd65a
 
 COCOAPODS: 1.10.0

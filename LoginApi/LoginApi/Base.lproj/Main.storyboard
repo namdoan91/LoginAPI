@@ -22,32 +22,62 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPE-HG-vKT">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tài khoản của bạn" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sfe-vH-V2l">
-                                        <rect key="frame" x="30" y="279" width="354" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tài Khoản Của Bạn" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Sfe-vH-V2l" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="30" y="279" width="354" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Id1-v4-eVU"/>
+                                            <constraint firstAttribute="height" constant="50" id="4Ze-T9-0Co"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" systemColor="systemGreenColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Tài Khoản Của bạn"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" systemColor="systemGrayColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Tài Khoản Của bạn"/>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu của bạn" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-3S-Vh6">
-                                        <rect key="frame" x="30" y="346" width="354" height="40"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Mật khẩu của bạn" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yp7-3S-Vh6" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="30" y="349" width="354" height="50"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Snn-40-dxB"/>
-                                            <constraint firstAttribute="height" constant="40" id="xxH-5K-jST"/>
+                                            <constraint firstAttribute="height" constant="50" id="2fQ-wD-sUp"/>
                                         </constraints>
-                                        <color key="textColor" systemColor="systemPinkColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mật Khẩu Của Bạn"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="title" value="Mật Khẩu Của Bạn"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" systemColor="systemGrayColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" systemColor="systemGreenColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUe-oF-oGT">
                                         <rect key="frame" x="246" y="437" width="138" height="42"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="9au-Cw-X6e"/>
+                                            <constraint firstAttribute="height" constant="42" id="pL8-C6-cPw"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Đăng Nhập">
@@ -62,11 +92,11 @@
                                             <action selector="btnLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vOB-uk-Gce"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vWw-dI-9RZ">
-                                        <rect key="frame" x="87" y="97" width="240" height="128"/>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhT-SX-3nU">
-                                        <rect key="frame" x="30" y="437" width="130" height="42"/>
+                                        <rect key="frame" x="30" y="437" width="85" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="vjB-26-6PT"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Đăng Kí"/>
                                         <userDefinedRuntimeAttributes>
@@ -78,28 +108,32 @@
                                             <action selector="btnRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h1g-ak-GH6"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vWw-dI-9RZ">
+                                        <rect key="frame" x="87" y="42" width="240" height="196"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="cUe-oF-oGT" firstAttribute="top" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="51" id="37a-HV-mOy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Sfe-vH-V2l" secondAttribute="trailing" constant="30" id="6UO-eJ-izc"/>
-                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="top" secondItem="JPE-HG-vKT" secondAttribute="top" constant="279" id="BFw-fv-fL1"/>
+                                    <constraint firstAttribute="bottom" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="419" id="7XW-IZ-EtH"/>
+                                    <constraint firstAttribute="bottom" secondItem="AhT-SX-3nU" secondAttribute="bottom" constant="339" id="8HA-3Y-AM5"/>
+                                    <constraint firstAttribute="trailing" secondItem="yp7-3S-Vh6" secondAttribute="trailing" constant="30" id="Bua-lZ-d5c"/>
                                     <constraint firstAttribute="trailing" secondItem="vWw-dI-9RZ" secondAttribute="trailing" constant="87" id="CSY-7l-ITo"/>
-                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="top" secondItem="vWw-dI-9RZ" secondAttribute="bottom" constant="54" id="DNl-tg-kPC"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sfe-vH-V2l" secondAttribute="bottom" constant="499" id="I1j-dz-5po"/>
+                                    <constraint firstAttribute="bottom" secondItem="cUe-oF-oGT" secondAttribute="bottom" constant="339" id="E50-8i-kIT"/>
                                     <constraint firstAttribute="bottom" secondItem="AhT-SX-3nU" secondAttribute="bottom" constant="339" id="J1v-Lk-E46"/>
+                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="top" secondItem="JPE-HG-vKT" secondAttribute="top" constant="279" id="JHd-xv-wEy"/>
                                     <constraint firstItem="vWw-dI-9RZ" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="87" id="KU2-Kk-eCX"/>
+                                    <constraint firstItem="cUe-oF-oGT" firstAttribute="top" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="38" id="LlS-CJ-RdJ"/>
                                     <constraint firstItem="AhT-SX-3nU" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="NMl-D7-cKm"/>
-                                    <constraint firstAttribute="bottom" secondItem="cUe-oF-oGT" secondAttribute="bottom" constant="339" id="PEb-ZF-4m4"/>
-                                    <constraint firstAttribute="trailing" secondItem="cUe-oF-oGT" secondAttribute="trailing" constant="30" id="QIi-KT-6bg"/>
-                                    <constraint firstItem="yp7-3S-Vh6" firstAttribute="top" secondItem="Sfe-vH-V2l" secondAttribute="bottom" constant="27" id="T3a-l2-jmI"/>
-                                    <constraint firstItem="cUe-oF-oGT" firstAttribute="leading" secondItem="AhT-SX-3nU" secondAttribute="trailing" constant="86" id="aMJ-jf-h4Y"/>
-                                    <constraint firstItem="yp7-3S-Vh6" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="bJ7-64-f4E"/>
-                                    <constraint firstItem="vWw-dI-9RZ" firstAttribute="top" secondItem="JPE-HG-vKT" secondAttribute="top" constant="97" id="bt2-hM-fzY"/>
-                                    <constraint firstItem="AhT-SX-3nU" firstAttribute="top" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="51" id="fsa-tO-5nl"/>
-                                    <constraint firstAttribute="trailing" secondItem="yp7-3S-Vh6" secondAttribute="trailing" constant="30" id="fvp-nr-hr8"/>
-                                    <constraint firstItem="cUe-oF-oGT" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="246" id="gJa-Of-6Bi"/>
-                                    <constraint firstAttribute="bottom" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="432" id="gQn-8D-9Yf"/>
-                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="qO6-En-ZjY"/>
+                                    <constraint firstAttribute="trailing" secondItem="AhT-SX-3nU" secondAttribute="trailing" constant="299" id="PDi-fB-Rt2"/>
+                                    <constraint firstItem="yp7-3S-Vh6" firstAttribute="top" secondItem="Sfe-vH-V2l" secondAttribute="bottom" constant="20" id="ROY-8B-tLL"/>
+                                    <constraint firstItem="vWw-dI-9RZ" firstAttribute="top" secondItem="JPE-HG-vKT" secondAttribute="top" constant="42" id="bt2-hM-fzY"/>
+                                    <constraint firstAttribute="trailing" secondItem="cUe-oF-oGT" secondAttribute="trailing" constant="30" id="diC-Q2-0jQ"/>
+                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="gjN-bo-nWf"/>
+                                    <constraint firstItem="yp7-3S-Vh6" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="gqt-2q-VtH"/>
+                                    <constraint firstItem="AhT-SX-3nU" firstAttribute="top" secondItem="yp7-3S-Vh6" secondAttribute="bottom" constant="38" id="grC-4I-BMr"/>
+                                    <constraint firstItem="Sfe-vH-V2l" firstAttribute="top" secondItem="vWw-dI-9RZ" secondAttribute="bottom" constant="41" id="wQ5-kp-L75"/>
+                                    <constraint firstItem="AhT-SX-3nU" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="30" id="y0L-3y-PPo"/>
+                                    <constraint firstItem="cUe-oF-oGT" firstAttribute="leading" secondItem="JPE-HG-vKT" secondAttribute="leading" constant="246" id="yS0-qa-LJh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Sfe-vH-V2l" secondAttribute="trailing" constant="30" id="znG-sy-BZn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -124,16 +158,24 @@
             <point key="canvasLocation" x="63.768115942028992" y="88.392857142857139"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Sfe-vH-V2l">
+            <size key="intrinsicContentSize" width="354" height="47.57421875"/>
+        </designable>
+        <designable name="yp7-3S-Vh6">
+            <size key="intrinsicContentSize" width="354" height="47.57421875"/>
+        </designable>
+    </designables>
     <resources>
         <image name="logo" width="206" height="196"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

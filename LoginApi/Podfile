@@ -7,4 +7,5 @@ target 'LoginApi' do
   # Pods for LoginApi
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
+	pod 'SkyFloatingLabelTextField'
 end
