@@ -22,6 +22,7 @@ class Profile: UIViewController {
         let containew = UIView()
         containew.translatesAutoresizingMaskIntoConstraints = false
         containew.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        containew.clipsToBounds = true
         return containew
     }()
     let stackview: UIStackView = {
@@ -29,6 +30,7 @@ class Profile: UIViewController {
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.backgroundColor = .white
         stackview.layer.cornerRadius = 20
+        stackview.clipsToBounds = true
        return stackview
     }()
     let logoVinHome: UIImageView = {
@@ -36,6 +38,7 @@ class Profile: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         logo.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
         logo.image = UIImage(named:"logo")
+        logo.clipsToBounds = true
         return logo
     }()
     let tendangnhapLabel: UILabel = {
@@ -43,6 +46,7 @@ class Profile: UIViewController {
         dangnhap.translatesAutoresizingMaskIntoConstraints = false
         dangnhap.text = "Họ Và Tên"
         dangnhap.font = UIFont.italicSystemFont(ofSize: 17)
+        dangnhap.clipsToBounds = true
         return dangnhap
     }()
     let ngaySinh: UILabel = {
@@ -50,6 +54,7 @@ class Profile: UIViewController {
         dangnhap.translatesAutoresizingMaskIntoConstraints = false
         dangnhap.text = "Ngày sinh"
         dangnhap.font = UIFont.italicSystemFont(ofSize: 17)
+        dangnhap.clipsToBounds = true
         return dangnhap
     }()
     let diaChi: UILabel = {
@@ -57,6 +62,7 @@ class Profile: UIViewController {
         dangnhap.translatesAutoresizingMaskIntoConstraints = false
         dangnhap.text = "Địa Chỉ"
         dangnhap.font = UIFont.italicSystemFont(ofSize: 17)
+        dangnhap.clipsToBounds = true
         return dangnhap
     }()
     let sodienThoai: UILabel = {
@@ -64,6 +70,7 @@ class Profile: UIViewController {
         dangnhap.translatesAutoresizingMaskIntoConstraints = false
         dangnhap.text = "Số Điện Thoại"
         dangnhap.font = UIFont.italicSystemFont(ofSize: 17)
+        dangnhap.clipsToBounds = true
         return dangnhap
     }()
     let emailLabel: UILabel = {
@@ -71,6 +78,7 @@ class Profile: UIViewController {
         dangnhap.translatesAutoresizingMaskIntoConstraints = false
         dangnhap.text = "Email"
         dangnhap.font = UIFont.italicSystemFont(ofSize: 17)
+        dangnhap.clipsToBounds = true
         return dangnhap
     }()
     
@@ -83,20 +91,19 @@ class Profile: UIViewController {
         titelname.isUserInteractionEnabled = false
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
-        titelname.layer.cornerRadius = 15
-        return titelname
+         return titelname
     }()
     
     var titleAge: UITextField = {
         let titelname = SkyFloatingLabelTextField()
         titelname.translatesAutoresizingMaskIntoConstraints = false
-        titelname.text = "Chưa có thông tin"
+        titelname.text = ""
         titelname.clipsToBounds = true
         titelname.selectedLineColor = UIColor.green.withAlphaComponent(0.8)
-//        titelname.isUserInteractionEnabled = false
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
         titelname.layer.cornerRadius = 15
+
         return titelname
     }()
     var titleAddress: UITextField = {
@@ -108,7 +115,6 @@ class Profile: UIViewController {
         titelname.isUserInteractionEnabled = false
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
-        titelname.layer.cornerRadius = 15
         return titelname
     }()
     var titlePhone: UITextField = {
@@ -120,7 +126,6 @@ class Profile: UIViewController {
         titelname.isUserInteractionEnabled = false
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
-        titelname.layer.cornerRadius = 15
         return titelname
     }()
     var titleEmail: UITextField = {
@@ -132,12 +137,19 @@ class Profile: UIViewController {
         titelname.isUserInteractionEnabled = false
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
-        titelname.layer.cornerRadius = 15
         return titelname
+    }()
+    let updateBtn: UIButton = {
+        let updateBtn = UIButton()
+        updateBtn.translatesAutoresizingMaskIntoConstraints = false
+        updateBtn.setTitle("Cập Nhật Thông Tin", for: .normal)
+        updateBtn.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        updateBtn.setTitleColor(.black, for: .normal)
+        updateBtn.layer.cornerRadius = 10
+        return updateBtn
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = UIColor.lightGray
         let editButton = UIBarButtonItem(title: "EDIT", style: .done, target: self, action: #selector(edit))
         navigationItem.rightBarButtonItem = editButton
@@ -151,10 +163,13 @@ class Profile: UIViewController {
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
+        
+        self.updateBtn.isEnabled = false
+        self.updateBtn.addTarget(self, action: #selector(updateAge), for: .touchUpInside)
+        titleAge.addTarget(self, action: #selector(listenEdit), for: .editingChanged)
 
     }
     @objc func edit(){
-       
     print("go edit")
     }
     @objc func signOut(){
@@ -190,7 +205,6 @@ class Profile: UIViewController {
                     self.titleAddress.text = data.adress
                     self.titlePhone.text = data.phoneNumber
                     self.titleEmail.text = data.email
-                    
                 }
             case .failure(let err):
                 print(err.localizedDescription)
@@ -211,6 +225,7 @@ class Profile: UIViewController {
         stackview.addSubview(titleAddress)
         stackview.addSubview(titlePhone)
         stackview.addSubview(titleEmail)
+        stackview.addSubview(updateBtn)
 
     }
     func setLayout(){
@@ -219,53 +234,77 @@ class Profile: UIViewController {
         container.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         container.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        stackview.topAnchor.constraint(equalTo: container.topAnchor, constant:  100).isActive = true
+        stackview.topAnchor.constraint(equalTo: container.topAnchor, constant:  84).isActive = true
         stackview.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20).isActive = true
         stackview.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20).isActive = true
-        stackview.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50).isActive = true
+        stackview.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20).isActive = true
         
         logoVinHome.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
-        logoVinHome.centerYAnchor.constraint(equalTo: stackview.centerYAnchor, constant: -250).isActive = true
+        logoVinHome.topAnchor.constraint(equalTo: stackview.topAnchor, constant: 10).isActive = true
 
-        tendangnhapLabel.topAnchor.constraint(equalTo: logoVinHome.bottomAnchor, constant:  50).isActive = true
+        tendangnhapLabel.topAnchor.constraint(equalTo: logoVinHome.bottomAnchor, constant:  40).isActive = true
         tendangnhapLabel.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
         tendangnhapLabel.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        titleName.topAnchor.constraint(equalTo: tendangnhapLabel.bottomAnchor, constant: -5).isActive = true
+        titleName.topAnchor.constraint(equalTo: tendangnhapLabel.bottomAnchor, constant: -15).isActive = true
         titleName.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         titleName.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
-//        titleName.topAnchor.constraint(equalTo: tendangnhapLabel.bottomAnchor, constant: 10).isActive = true
         
-        ngaySinh.topAnchor.constraint(equalTo: tendangnhapLabel.bottomAnchor, constant:  50).isActive = true
+        ngaySinh.topAnchor.constraint(equalTo: tendangnhapLabel.bottomAnchor, constant:  40).isActive = true
         ngaySinh.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
         ngaySinh.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        titleAge.topAnchor.constraint(equalTo: ngaySinh.bottomAnchor, constant: -5).isActive = true
+        titleAge.topAnchor.constraint(equalTo: ngaySinh.bottomAnchor, constant: -15).isActive = true
         titleAge.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         titleAge.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        diaChi.topAnchor.constraint(equalTo: ngaySinh.bottomAnchor, constant:  50).isActive = true
+        diaChi.topAnchor.constraint(equalTo: ngaySinh.bottomAnchor, constant:  40).isActive = true
         diaChi.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
         diaChi.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        titleAddress.topAnchor.constraint(equalTo: diaChi.bottomAnchor, constant: -5).isActive = true
+        titleAddress.topAnchor.constraint(equalTo: diaChi.bottomAnchor, constant: -15).isActive = true
         titleAddress.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         titleAddress.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        sodienThoai.topAnchor.constraint(equalTo: diaChi.bottomAnchor, constant:  50).isActive = true
+        sodienThoai.topAnchor.constraint(equalTo: diaChi.bottomAnchor, constant:  40).isActive = true
         sodienThoai.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
         sodienThoai.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        titlePhone.topAnchor.constraint(equalTo: sodienThoai.bottomAnchor, constant: -5).isActive = true
+        titlePhone.topAnchor.constraint(equalTo: sodienThoai.bottomAnchor, constant: -15).isActive = true
         titlePhone.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         titlePhone.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        emailLabel.topAnchor.constraint(equalTo: sodienThoai.bottomAnchor, constant:  50).isActive = true
+        emailLabel.topAnchor.constraint(equalTo: sodienThoai.bottomAnchor, constant:  40).isActive = true
         emailLabel.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
         emailLabel.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
-        titleEmail.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: -5).isActive = true
+        titleEmail.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: -15).isActive = true
         titleEmail.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         titleEmail.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
+        
+        updateBtn.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 40).isActive = true
+        updateBtn.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
+        updateBtn.widthAnchor.constraint(equalTo: updateBtn.widthAnchor, constant: 0).isActive = true
+        updateBtn.heightAnchor.constraint(equalTo:updateBtn.heightAnchor, constant: 0).isActive = true
+        
     }
+    
+    @objc func updateAge(){
+    print("đã mở")
+    }
+    @objc func listenEdit(){
+        if titleAge.text != nil{
+            updateBtn.isEnabled = true
+            updateBtn.backgroundColor = .brown
+            updateBtn.setTitle("Được quyền cập nhật", for: .normal)
+            print(titleAge.text)
+            return
+        }else if titleAge.text == "" {
+            updateBtn.isEnabled = false
+            updateBtn.backgroundColor = .yellow
+            updateBtn.setTitle("Cập Nhật Thông Tin", for: .normal)
+            return
+        }
+    }
+    
 }

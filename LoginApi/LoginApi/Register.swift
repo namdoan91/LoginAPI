@@ -23,13 +23,15 @@ class Register: UIViewController {
         stackview.translatesAutoresizingMaskIntoConstraints = false
         stackview.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         stackview.layer.cornerRadius = 20
+        stackview.clipsToBounds = true
         return stackview
     }()
     let logoImage: UIImageView = {
         let imageLogo = UIImageView()
         imageLogo.translatesAutoresizingMaskIntoConstraints = false
         imageLogo.image = UIImage(named: "logo")
-        imageLogo.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        imageLogo.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        imageLogo.clipsToBounds = true
         return imageLogo
     }()
     let userName: UITextField = {
@@ -163,37 +165,37 @@ class Register: UIViewController {
         stackview.topAnchor.constraint(equalTo: container.topAnchor, constant: 50).isActive = true
         stackview.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20).isActive = true
         stackview.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20).isActive = true
-        stackview.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -50).isActive = true
+        stackview.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -20).isActive = true
         
         logoImage.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
-        logoImage.centerYAnchor.constraint(equalTo: stackview.centerYAnchor, constant: -200).isActive = true
+        logoImage.topAnchor.constraint(equalTo: stackview.topAnchor, constant: 10).isActive = true
         
-        userName.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 50).isActive = true
+        userName.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 20).isActive = true
         userName.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         userName.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         userName.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        password.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 30).isActive = true
+        password.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 15).isActive = true
         password.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         password.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         password.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        phonenumber.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 30).isActive = true
+        phonenumber.topAnchor.constraint(equalTo: password.bottomAnchor, constant: 15).isActive = true
         phonenumber.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         phonenumber.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         phonenumber.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        address.topAnchor.constraint(equalTo: phonenumber.bottomAnchor, constant: 30).isActive = true
+        address.topAnchor.constraint(equalTo: phonenumber.bottomAnchor, constant: 15).isActive = true
         address.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         address.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         address.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        email.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 30).isActive = true
+        email.topAnchor.constraint(equalTo: address.bottomAnchor, constant: 15).isActive = true
         email.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
         email.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         email.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
-        register.topAnchor.constraint(equalTo:email.bottomAnchor, constant: 30).isActive = true
+        register.topAnchor.constraint(equalTo:email.bottomAnchor, constant: 15).isActive = true
         register.widthAnchor.constraint(equalToConstant: 120).isActive = true
         register.heightAnchor.constraint(equalTo: register.heightAnchor, constant: 0).isActive = true
         register.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
