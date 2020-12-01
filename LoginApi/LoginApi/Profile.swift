@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SkyFloatingLabelTextField
-
+import SideMenu
 
 class Profile: UIViewController {
 //    MARK: -- Tạo biến nhận data đó
@@ -81,7 +81,6 @@ class Profile: UIViewController {
         dangnhap.clipsToBounds = true
         return dangnhap
     }()
-    
     var titleName: UITextField = {
         let titelname = SkyFloatingLabelTextField()
         titelname.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +92,6 @@ class Profile: UIViewController {
         titelname.leftViewMode = .always
          return titelname
     }()
-    
     var titleAge: UITextField = {
         let titelname = SkyFloatingLabelTextField()
         titelname.translatesAutoresizingMaskIntoConstraints = false
@@ -102,6 +100,7 @@ class Profile: UIViewController {
         titelname.selectedLineColor = UIColor.green.withAlphaComponent(0.8)
         titelname.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: titelname.frame.height))
         titelname.leftViewMode = .always
+        titelname.isUserInteractionEnabled = false
         titelname.layer.cornerRadius = 15
 
         return titelname
@@ -148,28 +147,65 @@ class Profile: UIViewController {
         updateBtn.layer.cornerRadius = 10
         return updateBtn
     }()
+    
+    var isSlideInMenuPresented = false
+    lazy var slideInMenuPadding: CGFloat = self.view.frame.width * 0.30
+    
+    lazy var menuBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "sidebar.leading")?.withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(menuBarButtomItemTapped))
+    
+    @objc
+    func menuBarButtomItemTapped() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.containerView.frame.origin.x = self.isSlideInMenuPresented ? 0 : self.containerView.frame.width - self.slideInMenuPadding
+        } completion: { (finished) in
+            print("Animation finished: \(finished)")
+            self.isSlideInMenuPresented.toggle()
+        }
+
+    }
+    
+    lazy var menuView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray5
+        return view
+    }()
+    
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        return view
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.lightGray
-        let editButton = UIBarButtonItem(title: "EDIT", style: .done, target: self, action: #selector(edit))
-        navigationItem.rightBarButtonItem = editButton
+//        let editButton = UIBarButtonItem(image: UIImage(named:"hamburger-menu-icon"), style: .done, target: self, action: #selector(edit))
+        navigationItem.setRightBarButton(menuBarButtonItem, animated: false)
         let signOutButton = UIBarButtonItem(image: UIImage.init(systemName: "location"), style: .done, target: self, action: #selector(signOut))
         navigationItem.leftBarButtonItem = signOutButton
+        menuView.pinMenuTo(view, with: slideInMenuPadding)
+        containerView.edgeTo(view)
+        
         DispatchQueue.main.async {
                     self.getProfile()
                 }
+
         addSub()
         setLayout()
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        
-        self.updateBtn.isEnabled = false
+//        MARK: -- lắng nghe thay đổi
+        self.updateBtn.isEnabled = false //khoá tương tác người dùng
+        self.updateBtn.isHidden = true  //ẩn nút khi chưa cần dùng đến
         self.updateBtn.addTarget(self, action: #selector(updateAge), for: .touchUpInside)
-        titleAge.addTarget(self, action: #selector(listenEdit), for: .editingChanged)
-
+        titleAge.addTarget(self, action: #selector(Profile.listenEdit(_:)), for: .editingChanged)
+        titleAddress.addTarget(self, action: #selector(Profile.listenEdit(_:)), for: .editingChanged)
+// Kết thúc lắng nghe
+        
+        
     }
     @objc func edit(){
+
     print("go edit")
     }
     @objc func signOut(){
@@ -205,6 +241,11 @@ class Profile: UIViewController {
                     self.titleAddress.text = data.adress
                     self.titlePhone.text = data.phoneNumber
                     self.titleEmail.text = data.email
+                    if data.dateOfBirth == "" {
+                        self.titleAge.text = "Chưa có thông tin"
+                    }else {
+                        self.titleAge.text = data.dateOfBirth
+                    }
                 }
             case .failure(let err):
                 print(err.localizedDescription)
@@ -288,23 +329,59 @@ class Profile: UIViewController {
         updateBtn.heightAnchor.constraint(equalTo:updateBtn.heightAnchor, constant: 0).isActive = true
         
     }
-    
+//    MARK: -- Cập nhật thông tin profile
     @objc func updateAge(){
-    print("đã mở")
+        let dayofbirth = self.titleAge.text!
+        let url = "http://report.bekhoe.vn/api/accounts/update"
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)",
+            "Content-Type" : "application/x-www-form-urlencoded"]
+        let par = ["dateOfBirth" : dayofbirth, "address" : self.titleAddress.text!]
+        print(par)
+        print(token)
+        AF.request(url, method: .post,parameters: par, encoding: URLEncoding.httpBody, headers: header).responseJSON{
+            response in
+            print(response)
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+        
     }
-    @objc func listenEdit(){
-        if titleAge.text != nil{
-            updateBtn.isEnabled = true
-            updateBtn.backgroundColor = .brown
-            updateBtn.setTitle("Được quyền cập nhật", for: .normal)
-            print(titleAge.text)
-            return
-        }else if titleAge.text == "" {
+//    MARK: -- phương thức lắng nghe
+    @objc func listenEdit(_ titleAge: UITextField){
+        if titleAge.text == "" {
             updateBtn.isEnabled = false
-            updateBtn.backgroundColor = .yellow
+            updateBtn.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
             updateBtn.setTitle("Cập Nhật Thông Tin", for: .normal)
-            return
+        }else {
+            updateBtn.isEnabled = true
+            updateBtn.backgroundColor = UIColor.lightGray
+            updateBtn.setTitle("Được quyền cập nhật", for: .normal)
         }
     }
+
+}
+extension UIView {
+    func edgeTo(_ view: UIView) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
     
+    func pinMenuTo(_ view: UIView, with constant: CGFloat) {
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -constant).isActive = true
+        bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
 }

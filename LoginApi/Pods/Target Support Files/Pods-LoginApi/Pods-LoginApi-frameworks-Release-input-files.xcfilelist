@@ -1,4 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-LoginApi/Pods-LoginApi-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework
 ${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework
+${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework
 ${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
+${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework

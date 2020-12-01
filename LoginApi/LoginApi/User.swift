@@ -18,6 +18,7 @@ class User{
     var email:String?
     var avatar: String?
     var token: String?
+    var dateOfBirth: String?
     
     required public init?(json : JSON){
         id = json["id"].intValue
@@ -30,5 +31,6 @@ class User{
         email = json["email"].stringValue
         avatar = json["avatar"].stringValue
         token = json["token"].stringValue
+        dateOfBirth = json["dateOfBirth"].stringValue
     }
 }

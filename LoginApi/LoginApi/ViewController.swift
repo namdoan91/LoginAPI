@@ -9,10 +9,11 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SkyFloatingLabelTextField
+import TextFieldEffects
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var dangnhapText: SkyFloatingLabelTextField!
+    @IBOutlet weak var dangnhapText: TextFieldEffects!
     @IBOutlet weak var matkhauText: SkyFloatingLabelTextField!
     @IBOutlet weak var dangnhapbtN: UIButton!
     @IBOutlet weak var dangkiBTN: UIButton!
@@ -43,21 +44,13 @@ class ViewController: UIViewController {
     }
     
     func placeHolder(){
-//        self.dangnhapText.attributedPlaceholder = NSAttributedString(string: "Tài Khoản Của Bạn", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-//        self.dangnhapText.selectedTitleColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-//        self.dangnhapText.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-//        matkhauText.attributedPlaceholder = NSAttributedString(string: "Mật Khẩu Của Bạn", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         dangnhapText.layer.cornerRadius = 20
         dangnhapText.layer.masksToBounds = true
-        dangnhapText.textAlignment = .center
-        dangnhapText.titleLabel.textAlignment = .center
+//        dangnhapText.textAlignment = .center
         dangnhapText.clipsToBounds = true
         matkhauText.layer.cornerRadius = 20
         matkhauText.clipsToBounds = true
-        matkhauText.textAlignment = .center
-        matkhauText.titleLabel.textAlignment = .center
-        
-              
+//        matkhauText.textAlignment = .center
     }
     func login(_ phone: String, _ password: String){
         let url = "http://report.bekhoe.vn/api/accounts/login"

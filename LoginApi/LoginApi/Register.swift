@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SkyFloatingLabelTextField
+import TextFieldEffects
 
 class Register: UIViewController {
     let container:UIView = {
@@ -34,89 +35,74 @@ class Register: UIViewController {
         imageLogo.clipsToBounds = true
         return imageLogo
     }()
-    let userName: UITextField = {
-        let userName = SkyFloatingLabelTextField()
-        userName.translatesAutoresizingMaskIntoConstraints = false
-        userName.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-        userName.layer.cornerRadius = 10
-        userName.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: userName.frame.height))
-        userName.leftViewMode = .always
-        userName.textColor = .black
-        userName.title = "Họ Và Tên"
-        userName.selectedTitleColor = .white
-        userName.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
-        userName.clearsOnBeginEditing = true
-        userName.attributedPlaceholder = NSAttributedString(string: "Họ Và Tên", attributes: [NSAttributedString
-                                                                                                    .Key
-                                                                                                    .foregroundColor: UIColor.white])
-        return userName
-    }()
-    let password: UITextField = {
-        let password = SkyFloatingLabelTextField(frame: CGRect(x: 150, y: 10, width: 120, height: 45))
+    let userName: TextFieldEffects = {
+        let password = KaedeTextField(frame: CGRect(x: 0, y: 0, width: 130, height: 10))
         password.translatesAutoresizingMaskIntoConstraints = false
-        password.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        password.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         password.layer.cornerRadius = 10
+        password.clipsToBounds = true
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
         password.leftViewMode = .always
-        password.textColor = .black
-        password.title = "Mật Khẩu"
-        password.selectedTitleColor = .white
-        password.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
         password.clearsOnBeginEditing = true
-        password.attributedPlaceholder = NSAttributedString(string: "Mật Khẩu", attributes: [NSAttributedString
-                                                                                                    .Key
-                                                                                                    .foregroundColor: UIColor.white])
+        password.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        password.placeholder = "Họ Và Tên"
+        password.placeholderColor = UIColor.white
         return password
     }()
-    let phonenumber: UITextField = {
-        let phonenumber = SkyFloatingLabelTextField(frame: CGRect(x: 150, y: 10, width: 120, height: 45))
+    let password: TextFieldEffects = {
+        let password = KaedeTextField(frame: CGRect(x: 0, y: 0, width: 130, height: 10))
+        password.translatesAutoresizingMaskIntoConstraints = false
+        password.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        password.layer.cornerRadius = 10
+        password.clipsToBounds = true
+        password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: password.frame.height))
+        password.leftViewMode = .always
+        password.clearsOnBeginEditing = true
+        password.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        password.placeholder = "Mật Khẩu"
+        password.placeholderColor = UIColor.white
+        return password
+    }()
+    let phonenumber: TextFieldEffects = {
+        let phonenumber = KaedeTextField(frame: CGRect(x: 0, y: 0, width: 130, height: 10))
         phonenumber.translatesAutoresizingMaskIntoConstraints = false
-        phonenumber.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         phonenumber.layer.cornerRadius = 10
+        phonenumber.clipsToBounds = true
         phonenumber.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: phonenumber.frame.height))
         phonenumber.leftViewMode = .always
-        phonenumber.textColor = .black
-        phonenumber.title = "Số Điện Thoại"
-        phonenumber.selectedTitleColor = .white
-        phonenumber.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
         phonenumber.clearsOnBeginEditing = true
-        phonenumber.attributedPlaceholder = NSAttributedString(string: "Số Điện Thoại", attributes: [NSAttributedString
-                                                                                                                .Key
-                                                                                                                .foregroundColor: UIColor.white])
+        phonenumber.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.placeholder = "Số Đ.Thoại"
+        phonenumber.placeholderColor = UIColor.white
         return phonenumber
     }()
-    let address: UITextField = {
-        let phonenumber = SkyFloatingLabelTextField(frame: CGRect(x: 150, y: 10, width: 120, height: 45))
+    let address: TextFieldEffects = {
+        let phonenumber = KaedeTextField(frame: CGRect(x: 0, y: 0, width: 130, height: 10))
         phonenumber.translatesAutoresizingMaskIntoConstraints = false
-        phonenumber.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         phonenumber.layer.cornerRadius = 10
+        phonenumber.clipsToBounds = true
         phonenumber.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: phonenumber.frame.height))
         phonenumber.leftViewMode = .always
-        phonenumber.textColor = .black
-        phonenumber.title = "Địa Chỉ"
-        phonenumber.selectedTitleColor = .white
-        phonenumber.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
         phonenumber.clearsOnBeginEditing = true
-        phonenumber.attributedPlaceholder = NSAttributedString(string: "Địa Chỉ", attributes: [NSAttributedString
-                                                                                                                .Key
-                                                                                                                .foregroundColor: UIColor.white])
+        phonenumber.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.placeholder = "Địa Chỉ"
+        phonenumber.placeholderColor = UIColor.white
         return phonenumber
     }()
-    let email: UITextField = {
-        let phonenumber = SkyFloatingLabelTextField(frame: CGRect(x: 150, y: 10, width: 120, height: 45))
+    let email: TextFieldEffects = {
+        let phonenumber = KaedeTextField(frame: CGRect(x: 0, y: 0, width: 130, height: 10))
         phonenumber.translatesAutoresizingMaskIntoConstraints = false
-        phonenumber.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         phonenumber.layer.cornerRadius = 10
+        phonenumber.clipsToBounds = true
         phonenumber.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: phonenumber.frame.height))
         phonenumber.leftViewMode = .always
-        phonenumber.textColor = .black
-        phonenumber.title = "Email"
-        phonenumber.selectedTitleColor = .white
-        phonenumber.selectedLineColor = UIColor(red: 0, green: 187/255, blue: 204/255, alpha: 1.0)
         phonenumber.clearsOnBeginEditing = true
-        phonenumber.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString
-                                                                                                                .Key
-                                                                                                                .foregroundColor: UIColor.white])
+        phonenumber.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        phonenumber.placeholder = "Email"
+        phonenumber.placeholderColor = UIColor.white
         return phonenumber
     }()
     let register: UIButton = {
