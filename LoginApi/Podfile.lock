@@ -1,36 +1,38 @@
 PODS:
   - Alamofire (5.2.2)
-  - SideMenu (6.5.0)
+  - Kingfisher (5.15.8):
+    - Kingfisher/Core (= 5.15.8)
+  - Kingfisher/Core (5.15.8)
+  - SideMenuSwift (2.0.6)
   - SkyFloatingLabelTextField (3.8.0)
-  - SlideMenuControllerSwift (4.0.0)
   - SwiftyJSON (5.0.0)
   - TextFieldEffects (1.6.0)
 
 DEPENDENCIES:
   - Alamofire
-  - SideMenu
+  - Kingfisher
+  - SideMenuSwift
   - SkyFloatingLabelTextField
-  - SlideMenuControllerSwift
   - SwiftyJSON
   - TextFieldEffects
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - SideMenu
+    - Kingfisher
+    - SideMenuSwift
     - SkyFloatingLabelTextField
-    - SlideMenuControllerSwift
     - SwiftyJSON
     - TextFieldEffects
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  Kingfisher: a3c03d702433fa6cfedabb2bddbe076fb8f2e902
+  SideMenuSwift: f12ca1b11faad909bfc2878df37e0a1c40fa4570
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
-  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: f17b73d521ca34d485b696987c3a320659666699
+PODFILE CHECKSUM: 71f45784e6bf5a416ab7de714a5d3219f7a64832
 
 COCOAPODS: 1.10.0

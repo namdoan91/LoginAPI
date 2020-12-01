@@ -92,7 +92,7 @@ import UIKit
 		}
 
         UIView.animate(withDuration: 0.35, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 2.0, options: .beginFromCurrentState, animations: ({
-            self.placeholderLabel.frame.origin = CGPoint(x: self.frame.size.width * 0.8 * directionOverride, y: self.placeholderInsets.y)
+            self.placeholderLabel.frame.origin = CGPoint(x: self.frame.size.width * 0.77 * directionOverride, y: self.placeholderInsets.y)
         }), completion: nil)
         
         UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.5, options: .beginFromCurrentState, animations: ({

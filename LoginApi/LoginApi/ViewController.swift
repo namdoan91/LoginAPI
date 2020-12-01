@@ -13,29 +13,20 @@ import TextFieldEffects
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var dangnhapText: TextFieldEffects!
-    @IBOutlet weak var matkhauText: SkyFloatingLabelTextField!
+    @IBOutlet weak var dangnhapText: KaedeTextField!
+    @IBOutlet weak var matkhauText: KaedeTextField!
     @IBOutlet weak var dangnhapbtN: UIButton!
     @IBOutlet weak var dangkiBTN: UIButton!
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         placeHolder()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-
     }
 
     @IBAction func btnLogin(_ sender: Any) {
         let phone = dangnhapText.text!
         let password = matkhauText.text!
         login(phone, password)
-        
     }
-    
-
     @IBAction func btnRegister(_ sender: Any) {
         let registerVC = Register()
         let registerNavi = UINavigationController.init(rootViewController: registerVC)
@@ -45,12 +36,21 @@ class ViewController: UIViewController {
     
     func placeHolder(){
         dangnhapText.layer.cornerRadius = 20
-        dangnhapText.layer.masksToBounds = true
-//        dangnhapText.textAlignment = .center
+//        dangnhapText.layer.masksToBounds = true
         dangnhapText.clipsToBounds = true
+        dangnhapText.placeholderColor = UIColor.white
+        dangnhapText.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        dangnhapText.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        dangnhapText.frame = CGRect(x: 0, y: 0, width: 130, height: 10)
+        dangnhapText.placeholderFontScale = CGFloat(0.75)
         matkhauText.layer.cornerRadius = 20
         matkhauText.clipsToBounds = true
-//        matkhauText.textAlignment = .center
+        matkhauText.placeholderColor = UIColor.white
+        matkhauText.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        matkhauText.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
+        matkhauText.frame = CGRect(x: 0, y: 0, width: 130, height: 10)
+        matkhauText.placeholderFontScale = CGFloat(0.75)
+
     }
     func login(_ phone: String, _ password: String){
         let url = "http://report.bekhoe.vn/api/accounts/login"

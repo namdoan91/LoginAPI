@@ -39,7 +39,7 @@ import UIKit
      
      This property determines the size of the placeholder label relative to the font size of the text field.
      */
-    @IBInspectable dynamic open var placeholderFontScale: CGFloat = 0.65 {
+    @IBInspectable dynamic open var placeholderFontScale: CGFloat = 0.5 {
         didSet {
             updatePlaceholder()
         }
@@ -59,8 +59,8 @@ import UIKit
     }
     
     private let borderThickness: CGFloat = 2
-    private let placeholderInsets = CGPoint(x: 8, y: 8)
-    private let textFieldInsets = CGPoint(x: 8, y: 12)
+    private let placeholderInsets = CGPoint(x: 30, y: 30)
+    private let textFieldInsets = CGPoint(x: 10, y: 12)
     private let borderLayer = CALayer()
     
     // MARK: - TextFieldEffects
@@ -81,7 +81,7 @@ import UIKit
     override open func animateViewsForTextEntry() {
         borderLayer.frame.origin = CGPoint(x: 0, y: font!.lineHeight)
         
-        UIView.animate(withDuration: 0.2, delay: 0.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .beginFromCurrentState, animations: ({
+        UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .beginFromCurrentState, animations: ({
             
             self.placeholderLabel.frame.origin = CGPoint(x: self.placeholderInsets.x, y: self.borderLayer.frame.origin.y - self.placeholderLabel.bounds.height)
             self.borderLayer.frame = self.rectForBorder(self.borderThickness, isFilled: true)

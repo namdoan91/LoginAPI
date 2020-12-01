@@ -67,5 +67,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>NSCameraUsageDescription</key>
+    <string>My App cần truy cập máy ảnh của bạn. Ảnh của bạn sẽ không được chia sẻ khi chưa được phép của bạn.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>My App cần truy cập microphone của bạn. Microphone của bạn sẽ không được chia sẻ khi chưa được phép của bạn.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>My App cần truy cập thư viện của bạn. Ảnh của bạn sẽ không được chia sẻ khi chưa được phép của bạn.</string>
 </dict>
 </plist>
