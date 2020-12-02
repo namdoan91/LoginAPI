@@ -14,9 +14,10 @@
 		08A16ACA257129FE00739775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A16AC8257129FE00739775 /* Main.storyboard */; };
 		08A16ACC25712A0000739775 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08A16ACB25712A0000739775 /* Assets.xcassets */; };
 		08A16ACF25712A0000739775 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08A16ACD25712A0000739775 /* LaunchScreen.storyboard */; };
-		08A16ADC25712FA400739775 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A16ADB25712FA400739775 /* User.swift */; };
 		08A16AE92571397E00739775 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A16AE82571397E00739775 /* Profile.swift */; };
 		08B912A62576632B000455E9 /* Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B912A52576632B000455E9 /* Edit.swift */; };
+		08DECB932577222D0024E433 /* ChangePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DECB922577222D0024E433 /* ChangePass.swift */; };
+		08DECBA0257791150024E433 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DECB9F257791150024E433 /* User.swift */; };
 		A9D67DA8A22C4C65A0BB61DD /* Pods_LoginApi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BD301A8790DD088E93C08B5 /* Pods_LoginApi.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,9 +31,10 @@
 		08A16ACB25712A0000739775 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08A16ACE25712A0000739775 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08A16AD025712A0000739775 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		08A16ADB25712FA400739775 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		08A16AE82571397E00739775 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		08B912A52576632B000455E9 /* Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edit.swift; sourceTree = "<group>"; };
+		08DECB922577222D0024E433 /* ChangePass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePass.swift; sourceTree = "<group>"; };
+		08DECB9F257791150024E433 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0BD301A8790DD088E93C08B5 /* Pods_LoginApi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LoginApi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		66F185EAF4A0EC650B18795E /* Pods-LoginApi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApi.debug.xcconfig"; path = "Target Support Files/Pods-LoginApi/Pods-LoginApi.debug.xcconfig"; sourceTree = "<group>"; };
 		EA1DFF02B20AA92DB9CC3E21 /* Pods-LoginApi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginApi.release.xcconfig"; path = "Target Support Files/Pods-LoginApi/Pods-LoginApi.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,7 +79,8 @@
 				081EF76925739AA2005D1E80 /* Register.swift */,
 				08A16AE82571397E00739775 /* Profile.swift */,
 				08B912A52576632B000455E9 /* Edit.swift */,
-				08A16ADB25712FA400739775 /* User.swift */,
+				08DECB922577222D0024E433 /* ChangePass.swift */,
+				08DECB9F257791150024E433 /* User.swift */,
 				08A16AC8257129FE00739775 /* Main.storyboard */,
 				08A16ACB25712A0000739775 /* Assets.xcassets */,
 				08A16ACD25712A0000739775 /* LaunchScreen.storyboard */,
@@ -217,10 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DECB932577222D0024E433 /* ChangePass.swift in Sources */,
 				081EF76A25739AA2005D1E80 /* Register.swift in Sources */,
 				08A16AC7257129FE00739775 /* ViewController.swift in Sources */,
 				08A16AE92571397E00739775 /* Profile.swift in Sources */,
-				08A16ADC25712FA400739775 /* User.swift in Sources */,
+				08DECBA0257791150024E433 /* User.swift in Sources */,
 				08B912A62576632B000455E9 /* Edit.swift in Sources */,
 				08A16AC3257129FE00739775 /* AppDelegate.swift in Sources */,
 				08A16AC5257129FE00739775 /* SceneDelegate.swift in Sources */,

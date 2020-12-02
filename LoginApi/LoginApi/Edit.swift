@@ -11,11 +11,11 @@ import Alamofire
 import SwiftyJSON
 import Photos
 
-class Edit: UIViewController {
+class Edit: UIViewController, UIPopoverPresentationControllerDelegate {
     deinit {
         print("Huỷ EditViewController")
     }
-    
+
     var imagePicker: UIImagePickerController!
     let container:UIView = {
         let container = UIView()
@@ -109,13 +109,14 @@ class Edit: UIViewController {
         phonenumber.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
         phonenumber.placeholder = "Email"
         phonenumber.placeholderColor = UIColor.white
+        phonenumber.autocapitalizationType = .none
         return phonenumber
     }()
     let register: UIButton = {
         let register = UIButton()
         register.translatesAutoresizingMaskIntoConstraints = false
-        register.setTitle("Upload Profile", for: .normal)
-        register.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        register.setTitle("Update Profile", for: .normal)
+        register.backgroundColor = UIColor(red:0.733, green:0.733, blue:0.733, alpha: 1.000)
         register.layer.cornerRadius = 15
         register.titleLabel?.font = UIFont.init(name: "Arial", size: 15)
         register.isEnabled = false
@@ -125,7 +126,7 @@ class Edit: UIViewController {
         let register = UIButton()
         register.translatesAutoresizingMaskIntoConstraints = false
         register.setTitle("Change Pasword", for: .normal)
-        register.backgroundColor = UIColor.lightGray
+        register.backgroundColor = UIColor(red:0.733, green:0.733, blue:0.733, alpha: 1.000)
         register.layer.cornerRadius = 15
         register.titleLabel?.font = UIFont.init(name: "Arial", size: 15)
         return register
@@ -144,10 +145,11 @@ class Edit: UIViewController {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         DispatchQueue.main.async {
+            print("****-----******")
             print(self.logoImage)
         }
-        
     }
+//    MARK: -- func của các addtarget
     func addTarget(){
         register.addTarget(self, action: #selector(updateProfile), for: .touchUpInside)
         changePasword.addTarget(self, action: #selector(changPass), for: .touchUpInside)
@@ -157,12 +159,35 @@ class Edit: UIViewController {
         address.addTarget(self, action: #selector(listenEdit), for: .editingChanged)
         email.addTarget(self, action: #selector(listenEdit), for: .editingChanged)
     }
+// MARK: -- thoát quay về màn profile
     @objc func quayVe(){
         dismiss(animated: true, completion: nil)
     }
-    @objc func changPass(){
+//    MARK: -- thay đổi mật khẩu
+    @objc func changPass(sender: UIButton){
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let popupVC = storyboard.instantiateViewController(withIdentifier: "ChangePass") as! ChangePass
+//        popupVC.modalPresentationStyle = .popover
+//        popupVC.preferredContentSize = CGSize(width: 300, height: 300)
+//        let pVC = popupVC.popoverPresentationController
+//        pVC?.permittedArrowDirections = .any
+//        pVC?.delegate = self
+//        pVC?.sourceView = sender
+//        pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+//        present(popupVC, animated: true, completion: nil)
+//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "ChangePass") as? ChangePass else { return }
+        let changePass = ChangePass()
+        
+//        changePass.preferredContentSize = CGSize(width: 100, height: 100)
+        let navigationController = UINavigationController.init(rootViewController: changePass)
+//        navigationController.modalPresentationStyle = .fullScreen
+        navigationController.modalPresentationStyle = .overFullScreen
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.definesPresentationContext = true
+        self.present(navigationController, animated: true)
         print("da tap")
     }
+// MARK: -- tạo ràng buộc textfield khi có editchange
     @objc func updateProfile(){
         if self.userName.text! == "" {
             let alert = UIAlertController(title: "Thông Báo", message: "Vui Lòng Điền Họ Và Tên", preferredStyle: UIAlertController.Style.alert)
@@ -194,17 +219,16 @@ class Edit: UIViewController {
             self.present(alert, animated: true, completion: nil)
             return;
         }
-        
         let dayofbirth = self.dateOfBirth.text!
         let userName = self.userName.text!
         let gender = self.gender.text!
         let address = self.address.text!
         let email = self.email.text!
 //        var avatarImage = logoImage
-        updatePro(dateOfBirth, userName, gender, address, email)
+        updatePro(dayofbirth, userName, gender, address, email)
     }
-    func updatePro(_ Dayofbirth: String, _ UserName: String, _ Gender: String, _ Address: String, _ Email: String){
-        
+//    MARK: -- Phương thức update profile gửi bằng Alamofire
+    func updatePro(_ Dayofbirth: String,_ UserName: String,_ Gender: String,_ Address: String,_ Email: String){
         let url = "http://report.bekhoe.vn/api/accounts/update"
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)",
@@ -216,20 +240,33 @@ class Edit: UIViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                let code = json["code"].intValue
+                let profileVC = Profile()
+                if code == 0{
+                    let alert = UIAlertController(title: "Thông Báo", message: "Success", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Chuyển đến Profile ", style: .default, handler: { (UIAlertAction) in
+                        if json["code"] == 0{
+                            let navigationController = UINavigationController.init(rootViewController: profileVC)
+                            navigationController.modalPresentationStyle = .fullScreen
+                            self.present(navigationController, animated: true, completion: nil)
+                        }
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                }
                 print(json)
             case .failure(let err):
                 print(err.localizedDescription)
             }
         }
     }
+//    MARK: -- lắng nghe thay đổi từ các textfield để mở kháo button update profile
     @objc func listenEdit(_ userName: UITextField, _ dateOfBirth:UITextField,_ gender: UITextField,_ address:UITextField,_ email:UITextField){
         if userName.text == "" || dateOfBirth.text == "" || gender.text == "" || address.text == "" || email.text == ""{
             register.isEnabled = false
-            register.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+            register.backgroundColor = UIColor(red:0.733, green:0.733, blue:0.733, alpha: 1.000)
         }else {
             register.isEnabled = true
             register.backgroundColor = UIColor.darkGray
-
         }
     }
     func addSub(){
@@ -286,16 +323,17 @@ class Edit: UIViewController {
         email.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         register.topAnchor.constraint(equalTo:email.bottomAnchor, constant: 15).isActive = true
-        register.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        register.heightAnchor.constraint(equalTo: register.heightAnchor, constant: 0).isActive = true
+        register.widthAnchor.constraint(equalToConstant: 130).isActive = true
+        register.heightAnchor.constraint(equalTo: email.heightAnchor, constant: 0).isActive = true
         register.trailingAnchor.constraint(equalTo: stackview.trailingAnchor, constant: -20).isActive = true
         
         changePasword.topAnchor.constraint(equalTo:email.bottomAnchor, constant: 15).isActive = true
         changePasword.widthAnchor.constraint(equalToConstant: 130).isActive = true
-        changePasword.heightAnchor.constraint(equalTo: register.heightAnchor, constant: 0).isActive = true
+        changePasword.heightAnchor.constraint(equalTo: email.heightAnchor, constant: 0).isActive = true
         changePasword.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 20).isActive = true
     }
     @objc func uploadAvatar(){
+//        MARK: -- tạo thông báo cho app khi lấy dữ liệu từ camera
         let alert = UIAlertController(title: "VinHome App", message: "Chọn ảnh từ", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Huỷ", style: .cancel, handler: nil)
         let camera = UIAlertAction(title: "Máy ảnh", style: .default, handler: { (_) in
@@ -317,7 +355,6 @@ class Edit: UIViewController {
         alert.addAction(action)
         viewController?.present(alert, animated: true, completion: nil)
     }
-    
     // MARK: - Open setting photos của hệ điều hành
     func setting(){
         let message = "App cần truy cập máy ảnh và thư viện của bạn. Ảnh của bạn sẽ không được chia sẻ khi chưa được phép của bạn."
@@ -335,7 +372,6 @@ class Edit: UIViewController {
             }
         }
     }
-    
     // MARK: - Lấy ảnh từ thư viện
     private func fromLibrary(){
         func choosePhoto(){
@@ -345,6 +381,8 @@ class Edit: UIViewController {
                 self.imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
                 self.imagePicker.modalPresentationStyle = .popover
                 self.present(self.imagePicker, animated: true, completion: nil)
+                print("***************")
+                print(self.imagePicker)
             }
         }
         
@@ -373,7 +411,6 @@ class Edit: UIViewController {
             setting()
         }
     }
-    
     // MARK: - Lấy ảnh từ camera
     private func fromCamera(){
         func takePhoto(){
@@ -395,7 +432,6 @@ class Edit: UIViewController {
                 }
             }
         }
-        
         //Camera
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
@@ -407,7 +443,6 @@ class Edit: UIViewController {
         }
     }
 }
-
 extension Edit: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else {
@@ -415,14 +450,11 @@ extension Edit: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
             return
         }
         self.logoImage.image = selectedImage
-        if let data = selectedImage.jpegData(compressionQuality: 1) {
-            let url = "http://report.bekhoe.vn/api/upload"
-            let token = UserDefaults.standard.string(forKey: "token") ?? ""
-            
-//            AF.upload(<#T##data: Data##Data#>, to: <#T##URLConvertible#>)
-        }
         dismiss(animated: true, completion: nil)
+        print("*********-----------************")
+        print(self.logoImage)
+        
+        
     }
     
 }
-

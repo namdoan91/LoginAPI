@@ -109,8 +109,9 @@ class Register: UIViewController {
         let register = UIButton()
         register.translatesAutoresizingMaskIntoConstraints = false
         register.setTitle("Gửi Đăng Kí", for: .normal)
-        register.backgroundColor = UIColor.lightGray
-        register.layer.cornerRadius = 15
+        register.backgroundColor = UIColor(red:0.749, green:0.749, blue:0.749, alpha: 1.000)
+        register.titleLabel?.font = UIFont.init(name: "Arial", size: 15)
+        register.layer.cornerRadius = 10
         return register
     }()
     
@@ -183,7 +184,7 @@ class Register: UIViewController {
         
         register.topAnchor.constraint(equalTo:email.bottomAnchor, constant: 15).isActive = true
         register.widthAnchor.constraint(equalToConstant: 120).isActive = true
-        register.heightAnchor.constraint(equalTo: register.heightAnchor, constant: 0).isActive = true
+        register.heightAnchor.constraint(equalTo: email.heightAnchor, constant: 0).isActive = true
         register.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
     }
     
@@ -244,6 +245,8 @@ class Register: UIViewController {
                     let data = User(json: json["data"])
                     if let token = (data?.token!) {
                         UserDefaults.standard.setValue(token, forKey: "token")
+                        UserDefaults.standard.setValue(self.password.text, forKey: "Password")
+                        print(UserDefaults.standard.setValue(self.password.text, forKey: "Password"))
                         print("token regisster.   ----   \(token)")
                         let alert = UIAlertController(title: "Thông Báo", message: "Success", preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "Quay Lại", style: UIAlertAction.Style.default, handler: nil))

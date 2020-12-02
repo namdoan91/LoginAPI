@@ -50,6 +50,7 @@ class ViewController: UIViewController {
         matkhauText.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
         matkhauText.frame = CGRect(x: 0, y: 0, width: 130, height: 10)
         matkhauText.placeholderFontScale = CGFloat(0.75)
+        dangnhapbtN.backgroundColor = UIColor(red:0.749, green:0.749, blue:0.749, alpha: 1.000)
 
     }
     func login(_ phone: String, _ password: String){

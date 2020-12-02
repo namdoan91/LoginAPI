@@ -37,7 +37,9 @@ class Profile: UIViewController {
     let logoVinHome: UIImageView = {
         let logo = UIImageView()
         logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
+        logo.frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+        logo.layer.cornerRadius = logo.frame.height/2
+        logo.clipsToBounds = true
         logo.image = UIImage(named:"logo")
         logo.clipsToBounds = true
         return logo
@@ -160,9 +162,7 @@ class Profile: UIViewController {
         
         DispatchQueue.main.async {
                     self.getProfile()
-   
                 }
-
         addSub()
         setLayout()
         navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -215,7 +215,7 @@ class Profile: UIViewController {
                     self.userName = name
                     navigationItem.title = userName
                     self.titleName.text = userName
-                    self.titleAddress.text = data.adress
+                    self.titleAddress.text = data.address
                     self.titlePhone.text = data.phoneNumber
                     self.titleEmail.text = data.email
                     if data.dateOfBirth == "" {
@@ -225,9 +225,11 @@ class Profile: UIViewController {
                     }
                     if data.avatar == "" {
                         self.logoVinHome.image = UIImage(named: "logo")
+                        self.logoVinHome.layer.cornerRadius = 0
                     }else {
-                        let api = "http://report.bekhoe.vn/api/accounts/profile" + data.avatar!
+                        let api = "http://report.bekhoe.vn" + data.avatar!
                         self.logoVinHome.kf.setImage(with: URL(string: api))
+                        self.logoVinHome.layer.cornerRadius = logoVinHome.frame.height/2
                         print(api)
                     }
                 }
@@ -266,6 +268,8 @@ class Profile: UIViewController {
         
         logoVinHome.centerXAnchor.constraint(equalTo: stackview.centerXAnchor, constant: 0).isActive = true
         logoVinHome.topAnchor.constraint(equalTo: stackview.topAnchor, constant: 10).isActive = true
+        logoVinHome.widthAnchor.constraint(equalToConstant: logoVinHome.frame.width/2).isActive = true
+        logoVinHome.heightAnchor.constraint(equalTo: logoVinHome.widthAnchor, constant: 0).isActive = true
 
         tendangnhapLabel.topAnchor.constraint(equalTo: logoVinHome.bottomAnchor, constant:  40).isActive = true
         tendangnhapLabel.leadingAnchor.constraint(equalTo: stackview.leadingAnchor, constant: 30).isActive = true
