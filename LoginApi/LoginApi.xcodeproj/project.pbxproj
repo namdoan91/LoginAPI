@@ -63,7 +63,7 @@
 			path = model;
 			sourceTree = "<group>";
 		};
-		08542395257888BE00B45DF1 /* Controller */ = {
+		085423962578891500B45DF1 /* Controll */ = {
 			isa = PBXGroup;
 			children = (
 				08A16AC6257129FE00739775 /* ViewController.swift */,
@@ -72,8 +72,7 @@
 				08B912A52576632B000455E9 /* Edit.swift */,
 				08DECB922577222D0024E433 /* ChangePass.swift */,
 			);
-			name = Controller;
-			path = model;
+			path = Controll;
 			sourceTree = "<group>";
 		};
 		08A16AB6257129FE00739775 = {
@@ -97,7 +96,7 @@
 		08A16AC1257129FE00739775 /* LoginApi */ = {
 			isa = PBXGroup;
 			children = (
-				08542395257888BE00B45DF1 /* Controller */,
+				085423962578891500B45DF1 /* Controll */,
 				08542394257888B000B45DF1 /* model */,
 				08A16AC2257129FE00739775 /* AppDelegate.swift */,
 				08A16AC4257129FE00739775 /* SceneDelegate.swift */,
