@@ -54,6 +54,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08542394257888B000B45DF1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				085423902578715A00B45DF1 /* Upload.swift */,
+				08DECB9F257791150024E433 /* User.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		08542395257888BE00B45DF1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				08A16AC6257129FE00739775 /* ViewController.swift */,
+				08A16AE82571397E00739775 /* Profile.swift */,
+				081EF76925739AA2005D1E80 /* Register.swift */,
+				08B912A52576632B000455E9 /* Edit.swift */,
+				08DECB922577222D0024E433 /* ChangePass.swift */,
+			);
+			name = Controller;
+			path = model;
+			sourceTree = "<group>";
+		};
 		08A16AB6257129FE00739775 = {
 			isa = PBXGroup;
 			children = (
@@ -75,15 +97,10 @@
 		08A16AC1257129FE00739775 /* LoginApi */ = {
 			isa = PBXGroup;
 			children = (
+				08542395257888BE00B45DF1 /* Controller */,
+				08542394257888B000B45DF1 /* model */,
 				08A16AC2257129FE00739775 /* AppDelegate.swift */,
 				08A16AC4257129FE00739775 /* SceneDelegate.swift */,
-				08A16AC6257129FE00739775 /* ViewController.swift */,
-				08A16AE82571397E00739775 /* Profile.swift */,
-				081EF76925739AA2005D1E80 /* Register.swift */,
-				08B912A52576632B000455E9 /* Edit.swift */,
-				085423902578715A00B45DF1 /* Upload.swift */,
-				08DECB922577222D0024E433 /* ChangePass.swift */,
-				08DECB9F257791150024E433 /* User.swift */,
 				08A16AC8257129FE00739775 /* Main.storyboard */,
 				08A16ACB25712A0000739775 /* Assets.xcassets */,
 				08A16ACD25712A0000739775 /* LaunchScreen.storyboard */,
