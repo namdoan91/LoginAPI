@@ -131,6 +131,7 @@ class Edit: UIViewController, UIPopoverPresentationControllerDelegate {
         register.titleLabel?.font = UIFont.init(name: "Arial", size: 15)
         return register
     }()
+    var imagepath = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemTeal
@@ -224,16 +225,16 @@ class Edit: UIViewController, UIPopoverPresentationControllerDelegate {
         let gender = self.gender.text!
         let address = self.address.text!
         let email = self.email.text!
-//        var avatarImage = logoImage
-        updatePro(dayofbirth, userName, gender, address, email)
+        let avatarImage = imagepath
+        updatePro(dayofbirth, userName, gender, address, email, avatarImage)
     }
 //    MARK: -- Phương thức update profile gửi bằng Alamofire
-    func updatePro(_ Dayofbirth: String,_ UserName: String,_ Gender: String,_ Address: String,_ Email: String){
+    func updatePro(_ Dayofbirth: String,_ UserName: String,_ Gender: String,_ Address: String,_ Email: String,_ Avatar: String){
         let url = "http://report.bekhoe.vn/api/accounts/update"
         let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)",
                                    "Content-Type" : "application/x-www-form-urlencoded"]
-        let par = ["dateOfBirth" : Dayofbirth, "Name" :UserName, "gender" : "true", "address" : Address, "email": Email]
+        let par = ["dateOfBirth" : Dayofbirth, "Name" :UserName, "gender" : "true", "address" : Address, "email": Email,"avatar" : Avatar]
         AF.request(url, method: .post,parameters: par, encoding: URLEncoding.httpBody, headers: header).responseJSON{
             response in
             print(response)
@@ -381,8 +382,7 @@ class Edit: UIViewController, UIPopoverPresentationControllerDelegate {
                 self.imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
                 self.imagePicker.modalPresentationStyle = .popover
                 self.present(self.imagePicker, animated: true, completion: nil)
-                print("***************")
-                print(self.imagePicker)
+
             }
         }
         
@@ -451,10 +451,38 @@ extension Edit: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
         }
         self.logoImage.image = selectedImage
         dismiss(animated: true, completion: nil)
-        print("*********-----------************")
-        print(self.logoImage)
-        
-        
+        if let data = selectedImage.jpegData(compressionQuality: 1) {
+            let token = UserDefaults.standard.string(forKey: "token") ?? ""
+            let header: HTTPHeaders = ["Authorization" : "Bearer \(token)","Content-type": "multipart/form-data"]
+            let imageURL = info[UIImagePickerController.InfoKey.imageURL] as! NSURL
+            let fileName = imageURL.absoluteString
+           // Start Alamofire
+           AF.upload(multipartFormData: { multipartFormData in
+           multipartFormData.append(data, withName: "file", fileName: fileName!,mimeType: "image/jpeg")
+          },
+          to: "http://report.bekhoe.vn/api/upload",
+          method: .post,
+           headers: header).response {
+            response in
+            print("in du lieu gui avatar: \(response)")
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value!)
+                let code = json["code"].intValue
+                if let dataimage = Upload(json: json["data"]), let path = dataimage.path {
+                    if code == 0 {
+                        self.imagepath = path
+                        print(self.imagepath)
+                    }else{
+                        let alert = UIAlertController(title: "Thông Báo", message: "Upload ảnh thất bại", preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Quay Lại", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+           }
+         }
     }
-    
 }

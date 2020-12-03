@@ -36,13 +36,13 @@ class ViewController: UIViewController {
     
     func placeHolder(){
         dangnhapText.layer.cornerRadius = 20
-//        dangnhapText.layer.masksToBounds = true
         dangnhapText.clipsToBounds = true
         dangnhapText.placeholderColor = UIColor.white
         dangnhapText.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         dangnhapText.foregroundColor = UIColor.gray.withAlphaComponent(0.5)
         dangnhapText.frame = CGRect(x: 0, y: 0, width: 130, height: 10)
         dangnhapText.placeholderFontScale = CGFloat(0.75)
+        
         matkhauText.layer.cornerRadius = 20
         matkhauText.clipsToBounds = true
         matkhauText.placeholderColor = UIColor.white
